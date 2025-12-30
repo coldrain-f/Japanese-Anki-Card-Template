@@ -221,37 +221,33 @@ rt {
     color: #2d2824;
 }
 
-/* Exclude 섹션 - 새 스타일 */
+/* Exclude 섹션 - 심플 스타일 */
 .exclude-section {
-    margin-top: 16px;
-    padding: 12px 16px;
-    background: #f5ede6;
-    border-radius: 8px;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
 .exclude-section .exclude-label {
-    display: block;
-    font-size: 11px;
-    font-weight: 600;
+    font-size: 12px;
     color: #a09890;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 8px;
 }
 
 .exclude-section .exclude-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
 }
 
 .exclude-section .exclude-tag {
     display: inline-block;
-    padding: 4px 10px;
-    font-size: 14px;
-    color: #5a524a;
-    background: #ffffff;
-    border: 1px solid #e8ddd2;
+    padding: 2px 8px;
+    font-size: 13px;
+    color: #8a8079;
+    background: transparent;
+    border: 1px solid #d8d0c8;
     border-radius: 4px;
 }
 
@@ -441,11 +437,7 @@ rt {
     color: #7a746b;
 }
 
-/* Exclude 섹션 */
-.nightMode .exclude-section,
-.night_mode .exclude-section {
-    background: #2a2623;
-}
+/* Exclude 섹션 - 배경 없음 */
 
 .nightMode .exclude-section .exclude-label,
 .night_mode .exclude-section .exclude-label {
@@ -454,9 +446,9 @@ rt {
 
 .nightMode .exclude-section .exclude-tag,
 .night_mode .exclude-section .exclude-tag {
-    background: #1f1c1a;
-    border-color: #3a3530;
-    color: #a09890;
+    background: transparent;
+    border-color: #4a4540;
+    color: #8a8079;
 }
 
 /* Answer 섹션 */
