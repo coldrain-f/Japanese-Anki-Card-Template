@@ -5,17 +5,17 @@
 
 {{#GenerateJP2KR}}
 <div class="card-content">
-    <!-- 메인: 일본어 단어 + 뜻 개수 -->
-    <div class="main-content">
+    <!-- 헤더: 일본어 단어 -->
+    <div class="card-header">
         <span class="word jp">{{Expression}}</span>
         {{#MeaningCount}}<span class="meaning-count">[{{MeaningCount}}]</span>{{/MeaningCount}}
     </div>
 
-    <!-- Exclude 영역 (있을 경우에만 표시) -->
+    <!-- Exclude 영역 -->
     {{#Exclude2}}
-    <div class="exclude">
-        <span class="exclude-label">除外:</span>
-        <span class="exclude-tags" data-items="{{Exclude2}}"></span>
+    <div class="exclude-section">
+        <span class="exclude-label">除外</span>
+        <div class="exclude-tags" data-items="{{Exclude2}}"></div>
     </div>
     {{/Exclude2}}
 </div>

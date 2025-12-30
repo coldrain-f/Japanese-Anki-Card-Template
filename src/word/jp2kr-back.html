@@ -6,31 +6,27 @@
 {{FrontSide}}
 
 <!-- 정답 영역 -->
-<div class="answer">
-    <!-- 읽기 (후리가나) -->
-    <div class="reading-line">
-        <span class="reading">{{furigana:Reading}}</span>
+<div class="answer-section">
+    <!-- 읽기 -->
+    <div class="answer-reading">
+        {{furigana:Reading}}
     </div>
 
     <!-- 한국어 뜻 -->
-    <div class="meaning-line">
-        <span class="meaning">{{Meaning}}</span>
+    <div class="answer-meaning">
+        {{Meaning}}
     </div>
 
-    <!-- Frequency (있을 경우에만) -->
-    {{#Frequency}}
-    <div class="frequency">#{{Frequency}}</div>
-    {{/Frequency}}
+    <!-- 메타 정보 -->
+    <div class="answer-meta">
+        {{#Frequency}}<span class="frequency">#{{Frequency}}</span>{{/Frequency}}
+        <a class="dict-link" href="https://ja.dict.naver.com/#/search?query={{text:Expression}}">사전 →</a>
+    </div>
 
-    <!-- 이미지 (있을 경우에만) -->
+    <!-- 이미지 -->
     {{#Image}}
     <div class="image-container">
         {{Image}}
     </div>
     {{/Image}}
-
-    <!-- 사전 링크 -->
-    <div class="dictionary-link">
-        <a href="https://ja.dict.naver.com/#/search?query={{text:Expression}}">네이버 사전</a>
-    </div>
 </div>

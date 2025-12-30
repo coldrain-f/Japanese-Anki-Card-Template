@@ -5,16 +5,16 @@
 
 {{#GenerateKR2JP}}
 <div class="card-content">
-    <!-- 메인: 한국어 뜻 -->
-    <div class="main-content">
+    <!-- 헤더: 한국어 뜻 -->
+    <div class="card-header">
         <span class="meaning">{{Meaning}}</span>
     </div>
 
-    <!-- Exclude 영역 (있을 경우에만 표시) -->
+    <!-- Exclude 영역 -->
     {{#Exclude1}}
-    <div class="exclude">
-        <span class="exclude-label">除外:</span>
-        <span class="exclude-tags" data-items="{{Exclude1}}"></span>
+    <div class="exclude-section">
+        <span class="exclude-label">除外</span>
+        <div class="exclude-tags" data-items="{{Exclude1}}"></div>
     </div>
     {{/Exclude1}}
 </div>
