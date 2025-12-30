@@ -1,0 +1,7 @@
+{
+    "source_field": "Expression",
+    "target_field": "Frequency",
+    "overwrite": false,
+    "ignore_sentences": true,
+    "frequency_file_path": ""
+}

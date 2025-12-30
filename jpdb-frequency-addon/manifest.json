@@ -1,0 +1,9 @@
+{
+    "name": "JPDB Frequency",
+    "package": "jpdb-frequency-addon",
+    "version": "1.0.0",
+    "author": "Your Name",
+    "homepage": "",
+    "conflicts": [],
+    "min_point_version": 45
+}
