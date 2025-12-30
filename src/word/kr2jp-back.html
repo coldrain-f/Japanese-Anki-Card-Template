@@ -1,0 +1,32 @@
+<!-- ===========================================
+     단어 카드 - 뒷면 (한→일)
+     =========================================== -->
+
+<!-- 앞면 내용 유지 -->
+{{FrontSide}}
+
+<!-- 정답 영역 -->
+<div class="answer">
+    <!-- 일본어 단어 + 읽기 -->
+    <div class="word-line">
+        <span class="word jp">{{Expression}}</span>
+        <span class="reading">{{furigana:Reading}}</span>
+    </div>
+
+    <!-- Frequency (있을 경우에만) -->
+    {{#Frequency}}
+    <div class="frequency">#{{Frequency}}</div>
+    {{/Frequency}}
+
+    <!-- 이미지 (있을 경우에만) -->
+    {{#Image}}
+    <div class="image-container">
+        {{Image}}
+    </div>
+    {{/Image}}
+
+    <!-- 사전 링크 -->
+    <div class="dictionary-link">
+        <a href="https://ja.dict.naver.com/#/search?query={{text:Expression}}">네이버 사전</a>
+    </div>
+</div>

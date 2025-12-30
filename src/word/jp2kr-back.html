@@ -1,0 +1,36 @@
+<!-- ===========================================
+     단어 카드 - 뒷면 (일→한)
+     =========================================== -->
+
+<!-- 앞면 내용 유지 -->
+{{FrontSide}}
+
+<!-- 정답 영역 -->
+<div class="answer">
+    <!-- 읽기 (후리가나) -->
+    <div class="reading-line">
+        <span class="reading">{{furigana:Reading}}</span>
+    </div>
+
+    <!-- 한국어 뜻 -->
+    <div class="meaning-line">
+        <span class="meaning">{{Meaning}}</span>
+    </div>
+
+    <!-- Frequency (있을 경우에만) -->
+    {{#Frequency}}
+    <div class="frequency">#{{Frequency}}</div>
+    {{/Frequency}}
+
+    <!-- 이미지 (있을 경우에만) -->
+    {{#Image}}
+    <div class="image-container">
+        {{Image}}
+    </div>
+    {{/Image}}
+
+    <!-- 사전 링크 -->
+    <div class="dictionary-link">
+        <a href="https://ja.dict.naver.com/#/search?query={{text:Expression}}">네이버 사전</a>
+    </div>
+</div>
