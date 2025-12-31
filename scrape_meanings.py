@@ -166,15 +166,14 @@ def process_csv_file(driver, csv_path, progress):
         # Update progress
         progress[filename] = i + 1
 
-        # Save progress every 10 entries
-        if (i + 1) % 10 == 0:
-            save_progress(progress)
+        # Save progress and CSV after every entry (for safety)
+        save_progress(progress)
 
-            # Save intermediate results
-            with open(csv_path, 'w', encoding='utf-8', newline='') as f:
-                writer = csv.DictWriter(f, fieldnames=headers)
-                writer.writeheader()
-                writer.writerows(rows)
+        # Save intermediate results to CSV
+        with open(csv_path, 'w', encoding='utf-8', newline='') as f:
+            writer = csv.DictWriter(f, fieldnames=headers)
+            writer.writeheader()
+            writer.writerows(rows)
 
         # Be polite to the server
         time.sleep(DELAY_BETWEEN_REQUESTS)
