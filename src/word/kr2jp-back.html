@@ -13,6 +13,29 @@
         <span class="reading-inline">{{furigana:Reading}}</span>
     </div>
 
+    <!-- ImmersionKit 예문 -->
+    {{#IMM_Sentence}}
+    <div class="immersion-section">
+        <div class="immersion-header">Example</div>
+        <div class="immersion-content">
+            {{#IMM_Image}}
+            <div class="immersion-image">
+                {{IMM_Image}}
+            </div>
+            {{/IMM_Image}}
+            <div class="immersion-text">
+                <div class="immersion-sentence">{{IMM_Sentence}}</div>
+                <div class="immersion-footer">
+                    {{#IMM_SourceMedia}}
+                    <span class="immersion-source">{{IMM_SourceMedia}}</span>
+                    {{/IMM_SourceMedia}}
+                    {{IMM_Audio}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/IMM_Sentence}}
+
     <!-- 메타 정보 -->
     <div class="answer-meta">
         {{#Frequency}}<span class="frequency">#{{Frequency}}</span>{{/Frequency}}
