@@ -228,20 +228,33 @@ def process_csv_file_parallel(csv_path, progress, num_workers=NUM_WORKERS):
         rows = list(reader)
 
     total = len(rows)
-    completed = progress.get(filename, 0)
+
+    # Filter out rows that already have meanings (skip filled entries)
+    to_process = []
+    to_process_indices = []
+    already_filled = 0
+
+    for idx, row in enumerate(rows):
+        existing_meaning = row.get('Meaning', '').strip()
+        if existing_meaning and '1.' in existing_meaning:
+            already_filled += 1
+            continue
+        to_process.append(row)
+        to_process_indices.append(idx)
 
     print(f"Total entries: {total}")
-    print(f"Completed: {completed}")
-    print(f"Remaining: {total - completed}")
+    print(f"Already filled: {already_filled}")
+    print(f"To process: {len(to_process)}")
     print(f"Workers: {num_workers}")
 
-    if completed >= total:
+    if len(to_process) == 0:
         print(f"[INFO] {filename} already completed, skipping")
+        progress[filename] = total
         return progress
 
-    # Get remaining rows
-    remaining_rows = rows[completed:]
-    remaining_indices = list(range(completed, total))
+    # Use filtered rows
+    remaining_rows = to_process
+    remaining_indices = to_process_indices
 
     # Split into chunks for workers
     chunk_size = len(remaining_rows) // num_workers
