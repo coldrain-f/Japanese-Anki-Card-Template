@@ -21,8 +21,8 @@ from pathlib import Path
 # Configuration
 POS_DIR = 'resources/pos/'
 PROGRESS_FILE = 'scraping_progress.json'
-DELAY_BETWEEN_REQUESTS = 1.5  # seconds
-MAX_RETRIES = 3
+DELAY_BETWEEN_REQUESTS = 0.3  # seconds (minimal delay)
+MAX_RETRIES = 2  # Reduced retries for speed
 
 # Files to process (only main POS)
 TARGET_FILES = ['noun.csv', 'verb.csv', 'adjective.csv', 'adverb.csv']
@@ -55,9 +55,8 @@ def scrape_naver_meaning(driver, word):
         url = f"https://ja.dict.naver.com/#/search?range=word&query={word}"
         driver.get(url)
 
-        # Wait for the page to load (increased timeout and added sleep for stability)
-        time.sleep(2)  # Allow JavaScript to render
-        wait = WebDriverWait(driver, 15)
+        # Wait for the page to load (minimal timeout)
+        wait = WebDriverWait(driver, 3)
 
         elements = None
 
@@ -109,7 +108,7 @@ def scrape_with_retry(driver, word, max_retries=MAX_RETRIES):
             return meaning
 
         if attempt < max_retries - 1:
-            time.sleep(1)  # Wait before retry
+            time.sleep(0.3)  # Minimal wait before retry
 
     return None
 
@@ -144,39 +143,51 @@ def process_csv_file(driver, csv_path, progress):
     print(f"Starting from: {completed + 1}")
 
     # Process rows
-    for i in range(completed, total):
-        row = rows[i]
-        expression = row.get('Expression', '').strip()
+    try:
+        for i in range(completed, total):
+            row = rows[i]
+            expression = row.get('Expression', '').strip()
 
-        if not expression:
-            continue
+            if not expression:
+                continue
 
-        print(f"  [{i+1}/{total}] {expression}... ", end='', flush=True)
+            print(f"  [{i+1}/{total}] {expression}... ", end='', flush=True)
 
-        # Scrape meaning
-        meaning = scrape_with_retry(driver, expression)
+            # Scrape meaning
+            meaning = scrape_with_retry(driver, expression)
 
-        if meaning:
-            row['Meaning'] = meaning
-            print("[OK]")
-        else:
-            row['Meaning'] = ''
-            print("[FAIL]")
+            if meaning:
+                row['Meaning'] = meaning
+                print("[OK]")
+            else:
+                row['Meaning'] = ''
+                print("[FAIL]")
 
-        # Update progress
-        progress[filename] = i + 1
+            # Update progress
+            progress[filename] = i + 1
 
-        # Save progress and CSV after every entry (for safety)
+            # Save progress and CSV every 10 entries (for performance)
+            if (i + 1) % 10 == 0:
+                save_progress(progress)
+
+                # Save intermediate results to CSV
+                with open(csv_path, 'w', encoding='utf-8', newline='') as f:
+                    writer = csv.DictWriter(f, fieldnames=headers)
+                    writer.writeheader()
+                    writer.writerows(rows)
+
+            # Be polite to the server
+            time.sleep(DELAY_BETWEEN_REQUESTS)
+
+    except KeyboardInterrupt:
+        # Save on Ctrl+C
+        print("\n[INFO] Saving progress before exit...")
         save_progress(progress)
-
-        # Save intermediate results to CSV
         with open(csv_path, 'w', encoding='utf-8', newline='') as f:
             writer = csv.DictWriter(f, fieldnames=headers)
             writer.writeheader()
             writer.writerows(rows)
-
-        # Be polite to the server
-        time.sleep(DELAY_BETWEEN_REQUESTS)
+        raise  # Re-raise to exit properly
 
     # Save final results
     with open(csv_path, 'w', encoding='utf-8', newline='') as f:

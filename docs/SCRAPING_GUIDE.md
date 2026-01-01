@@ -27,15 +27,33 @@
 
 ## 🚀 실행 방법
 
+### 버전 선택
+
+**병렬 버전 (추천 - 빠름!):**
+```bash
+python scrape_meanings_parallel.py
+```
+- 6개 브라우저 동시 실행
+- 예상 시간: **약 2-3시간**
+- IP 차단 위험 있음 (보통 1-2시간 후 자동 해제)
+
+**일반 버전 (안전함):**
+```bash
+python scrape_meanings.py
+```
+- 1개 브라우저만 사용
+- 예상 시간: 약 10-12시간
+- IP 차단 위험 낮음
+
 ### 1. 터미널 열기
 프로젝트 디렉토리에서 터미널을 엽니다:
 ```bash
 cd C:\dev\Japanese-Anki-Card-Template
 ```
 
-### 2. 스크립트 실행
+### 2. 스크립트 실행 (병렬 버전 추천)
 ```bash
-python scrape_meanings.py
+python scrape_meanings_parallel.py
 ```
 
 ### 3. 실행 확인
