@@ -638,6 +638,19 @@ rt {
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
+/* 태그 - 다크모드 */
+.nightMode .tags-section,
+.night_mode .tags-section {
+    border-top-color: #3a3530;
+}
+
+.nightMode .tag-badge,
+.night_mode .tag-badge {
+    background: #2a2623;
+    border-color: #4a4540;
+    color: #a09890;
+}
+
 /* ===========================================
    15. Image Lightbox Modal
    =========================================== */
