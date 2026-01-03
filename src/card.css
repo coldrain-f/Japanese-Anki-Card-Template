@@ -262,7 +262,7 @@ rt {
 /* 정답 - 읽기 */
 .answer-reading {
     font-family: 'Yumin', 'Hiragino Mincho ProN', serif;
-    font-size: 20px;
+    font-size: 24px;
     color: #5a524a;
     margin-bottom: 12px;
 }
