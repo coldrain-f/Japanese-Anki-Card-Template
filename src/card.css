@@ -403,9 +403,9 @@ rt {
 .immersion-footer {
     display: flex;
     align-items: center;
-    gap: 12px;
+    justify-content: space-between;
     margin-top: 8px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .immersion-source {
@@ -610,4 +610,69 @@ rt {
 .night_mode .immersion-image img {
     opacity: 0.92;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* ===========================================
+   15. Image Lightbox Modal
+   =========================================== */
+
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* 기본 상태: 완전히 숨김 */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.lightbox.active {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox img {
+    max-width: 95%;
+    max-height: 95%;
+    object-fit: contain;
+    border-radius: 4px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: lightbox-zoom 0.2s ease-out;
+}
+
+@keyframes lightbox-zoom {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 이미지에 클릭 가능 표시 */
+.immersion-image img {
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.immersion-image img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 2px 10px rgba(61, 54, 48, 0.2);
+}
+
+.immersion-image img:active {
+    transform: scale(0.98);
 }

@@ -42,3 +42,27 @@
         <a class="dict-link" href="https://ja.dict.naver.com/#/search?query={{text:Expression}}">사전 →</a>
     </div>
 </div>
+
+<!-- 이미지 확대 모달 -->
+<div id="image-lightbox" class="lightbox"></div>
+
+<script>
+    (function () {
+        var lightbox = document.getElementById('image-lightbox');
+
+        var images = document.querySelectorAll('.immersion-image img');
+        images.forEach(function (img) {
+            img.style.cursor = 'pointer';
+            img.onclick = function (e) {
+                e.stopPropagation();
+                lightbox.innerHTML = this.outerHTML;
+                lightbox.classList.add('active');
+            };
+        });
+
+        lightbox.onclick = function () {
+            this.classList.remove('active');
+            this.innerHTML = '';
+        };
+    })();
+</script>
