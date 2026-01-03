@@ -45,6 +45,13 @@
         {{#Frequency}}<span class="frequency">#{{Frequency}}</span>{{/Frequency}}
         <a class="dict-link" href="https://ja.dict.naver.com/#/search?query={{text:Expression}}">사전 →</a>
     </div>
+
+    <!-- 태그 -->
+    {{#Tags}}
+    <div class="tags-section">
+        <span class="tags-content">{{Tags}}</span>
+    </div>
+    {{/Tags}}
 </div>
 
 <!-- 이미지 확대 모달 -->
@@ -52,8 +59,8 @@
 
 <script>
     (function () {
+        // 이미지 확대 기능
         var lightbox = document.getElementById('image-lightbox');
-
         var images = document.querySelectorAll('.immersion-image img');
         images.forEach(function (img) {
             img.style.cursor = 'pointer';
@@ -63,10 +70,18 @@
                 lightbox.classList.add('active');
             };
         });
-
         lightbox.onclick = function () {
             this.classList.remove('active');
             this.innerHTML = '';
         };
+
+        // 태그를 개별 뱃지로 변환
+        var tagsContent = document.querySelector('.tags-content');
+        if (tagsContent) {
+            var tags = tagsContent.textContent.trim().split(/\s+/);
+            tagsContent.innerHTML = tags.map(function (tag) {
+                return '<span class="tag-badge">' + tag + '</span>';
+            }).join('');
+        }
     })();
 </script>

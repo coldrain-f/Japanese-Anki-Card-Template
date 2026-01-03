@@ -328,6 +328,32 @@ rt {
     text-decoration: underline;
 }
 
+/* 태그 섹션 */
+.tags-section {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #e8e2da;
+}
+
+.tags-content {
+    font-size: 12px;
+    color: #a09890;
+    line-height: 1.8;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 11px;
+    color: #7a6f63;
+    background: #f5ede6;
+    border: 1px solid #e8ddd2;
+    border-radius: 12px;
+}
+
 /* -------------------------------------------
    10. Image Container
    ------------------------------------------- */
